@@ -1,0 +1,233 @@
+:root {
+  --primary-green: #2d6a4f;      /* Vert foncé pour les accents */
+  --deep-forest: #1b4332;       /* NOUVEAU : Vert très foncé pour le fond d'écran */
+  --light-green: #d8f3dc;       /* Vert clair pour les tags/boutons */
+  --anthracite: #334155;        /* Texte tableau */
+  --white: #ffffff;
+}
+
+/* 1. CONFIGURATION DU FOND TOTAL (VERT FONCÉ) */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh; /* Couvre toute la hauteur de l'écran */
+  background-color: #1b4332; /* Vert forêt profond */
+  /* Optionnel : un léger dégradé pour plus de relief */
+  background: linear-gradient(135deg, #1b4332 0%, #081c15 100%);
+  background-attachment: fixed; /* Le fond reste fixe au scroll */
+  color: #ffffff;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+#root {
+  width: 100%;
+}
+
+/* 2. CONTENEUR PRINCIPAL CENTRÉ */
+.app-container {
+  width: 95%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre tout le contenu horizontalement */
+}
+
+/* 3. EN-TÊTE */
+.main-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.main-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+  color: #ffffff;
+}
+
+.main-header p {
+  font-size: 1.1rem;
+  color: #d8f3dc; /* Vert très clair */
+  opacity: 0.9;
+}
+
+/* 4. ZONE DE CONTRÔLE (RECHERCHE + FILTRES) */
+.controls-section {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 45px;
+}
+
+/* BARRE DE RECHERCHE CORRIGÉE (Pas de bande noire, pas de bordure) */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 14px 25px;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  border: none !important;
+  outline: none !important;
+}
+
+.icon-search {
+  color: #2d6a4f;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none !important;
+  outline: none !important; /* Supprime le contour bleu/noir au clic */
+  margin-left: 12px;
+  font-size: 1.1rem;
+  color: #334155; /* Gris anthracite */
+  background: transparent;
+}
+
+/* BOUTONS DE FILTRE */
+.filter-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-group button {
+  padding: 12px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.filter-group button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.filter-group button.active {
+  background: #d8f3dc; /* Vert menthe clair */
+  color: #1b4332; /* Texte vert foncé */
+  border-color: #d8f3dc;
+}
+
+.btn-pdf {
+  background: #40916c !important;
+  color: white !important;
+  border: none !important;
+}
+
+/* 5. TABLEAU (BLANC POUR LE CONTRASTE) */
+.table-wrapper {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.vaccine-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Garde les colonnes alignées */
+}
+
+/* Entêtes du tableau */
+.vaccine-table th {
+  background: #f8fafc;
+  padding: 20px;
+  text-align: left;
+  color: #64748b; /* Gris anthracite clair */
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid #d8f3dc;
+}
+
+/* Cellules du tableau (Texte Anthracite) */
+.vaccine-table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: top;
+  color: #334155; /* Gris anthracite foncé pour la lecture */
+  font-size: 0.95rem;
+}
+
+.pathologie-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pathologie-name {
+  font-weight: 800;
+  color: #2d6a4f; /* Accentuation vert foncé */
+}
+
+.emoji-icon {
+  font-size: 1.4rem;
+  min-width: 30px;
+}
+
+/* Tags des vaccins */
+.vaccine-tag {
+  display: inline-block;
+  background: #d8f3dc;
+  color: #1b4332;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin: 2px;
+  font-weight: 700;
+}
+
+/* Notes spéciales plus contrastées et lisibles */
+.special-content {
+  background: #e8f5e9; /* Un vert très légèrement plus soutenu pour le fond */
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  /* Bordure latérale plus foncée pour attirer l'œil */
+  border-left: 5px solid #081c15;
+  border-top: 2px solid #081c15;
+  border-right: 2px solid #081c15;
+  border-bottom: 2px solid #081c15;
+  /* Texte en gris anthracite très foncé (presque noir) pour un contraste maximal */
+  color: #1a202c;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.4;
+  font-weight: 500; /* Un peu plus épais pour la lisibilité */
+}
+
+/* On change aussi la couleur de l'icône Info pour qu'elle ressorte mieux */
+.special-content svg {
+  color: #2d6a4f;
+  flex-shrink: 0; /* Empêche l'icône de s'écraser si le texte est long */
+  margin-top: 2px;
+}
+/* Gestion du responsive pour les petits écrans */
+@media (max-width: 768px) {
+  .vaccine-table {
+    display: block;
+    overflow-x: auto;
+  }
+  .main-header h1 {
+    font-size: 2rem;
+  }
+}
