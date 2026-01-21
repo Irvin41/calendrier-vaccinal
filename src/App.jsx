@@ -6,6 +6,22 @@ import './App.css';
 
 const vaccinesData = [
     {
+        id: 100,
+        pathologie: "Coqueluche, Diphtérie, Tétanos, Polio, HiB, Hépatite B",
+        icon: "🛡️",
+        jeunes: {
+            vaccins: ["Hexyon", "Infanrix", "Vaxelis", "Tetravac (6 ans)", "Repevax", "Boostrix Tetra"],
+            doses: "2, 4, 11 mois",
+            rappels: "6 ans et 11-13 ans"
+        },
+        adultes: {
+            vaccins: ["Repevax", "Boostrix Tetra"],
+            doses: "Rappels 25, 65 ans",
+            rappels: "Puis tous les 10 ans"
+        },
+        special: "Vaccins combinés (Hexavalent pour nourrissons, DTPca pour rappels)."
+    },
+    {
         id: 1, pathologie: "Coqueluche", icon: "🦠",
         jeunes: { vaccins: ["Hexavalent", "DTCaPolio"], doses: "2, 4, 11 mois (Obligatoire)", rappels: "6 ans et 11-13 ans" },
         adultes: { vaccins: ["dTcaPolio"], doses: "Rappel 25 ans (Obligatoire)", rappels: "45, 65 ans, puis tous les 10 ans" },
@@ -129,7 +145,7 @@ const vaccinesData = [
 
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [ageFilter, setAgeFilter] = useState('jeunes'); // 'jeunes' ou 'adultes'
+    const [ageFilter, setAgeFilter] = useState('jeunes');
 
     const filteredVaccines = vaccinesData.filter(v =>
         v.pathologie.toLowerCase().includes(searchTerm.toLowerCase())
@@ -138,19 +154,14 @@ const App = () => {
     const openPDF = () => {
         try {
             const doc = new jsPDF('l', 'mm', 'a4');
-
-            // Titre
             doc.setFontSize(18);
             doc.setTextColor(27, 67, 50);
             const title = `CALENDRIER VACCINAL 2025 - PROFIL : ${ageFilter === 'jeunes' ? '0-20 ANS' : '20 ANS ET +'}`;
             doc.text(title, 14, 15);
 
-            // Fonction interne pour nettoyer les caractères spéciaux
             const cleanText = (text) => {
                 if (!text) return "-";
-                return String(text)
-                    .replace(/≥/g, 'plus de')
-                    .replace(/\n/g, ' ');
+                return String(text).replace(/≥/g, 'plus de').replace(/\n/g, ' ');
             };
 
             const tableColumn = ["Maladie", "Vaccins", "Doses / Primo", "Rappels", "Notes Spéciales"];
@@ -169,15 +180,8 @@ const App = () => {
                 startY: 25,
                 theme: 'grid',
                 headStyles: { fillColor: [27, 67, 50], textColor: [255, 255, 255] },
-                styles: {
-                    fontSize: 9,
-                    overflow: 'linebreak',
-                    font: 'helvetica'
-                },
-                columnStyles: {
-                    0: { fontStyle: 'bold', cellWidth: 40 },
-                    4: { cellWidth: 'auto' }
-                }
+                styles: { fontSize: 9, overflow: 'linebreak', font: 'helvetica' },
+                columnStyles: { 0: { fontStyle: 'bold', cellWidth: 40 }, 4: { cellWidth: 'auto' } }
             });
 
             const pdfBlob = doc.output('blob');
@@ -192,7 +196,7 @@ const App = () => {
         <div className="app-container">
             <header className="main-header">
                 <h1>Calendrier Vaccinal 2025</h1>
-                <p>Répertoire interactif des recommandations françaises (Version Corrigée)</p>
+                <p>Répertoire interactif des recommandations françaises</p>
             </header>
 
             <div className="controls-section">
